@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invex Assessoria - Estratégia, Marketing e Tecnologia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset e Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0056b3;
+            --secondary: #FF6B00;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #e05d00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 20px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-content {
+            max-width: 600px;
+        }
+        
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+        
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        
+        nav.scrolled .logo,
+        nav.scrolled .nav-links a {
+            color: var(--dark);
+        }
+        
+        nav.scrolled .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        /* Sobre */
+        #sobre {
+            background: var(--light);
+        }
+        
+        .sobre-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .sobre-text {
+            flex: 1;
+        }
+        
+        .sobre-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sobre-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Serviços */
+        #servicos {
+            background: white;
+        }
+        
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .servico-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .servico-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .servico-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* Diferenciais */
+        #diferenciais {
+            background: var(--light);
+        }
+        
+        .diferenciais-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .diferencial-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .diferencial-item i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* CTA */
+        #cta {
+            background: linear-gradient(rgba(0, 86, 179, 0.9), rgba(0, 86, 179, 0.9)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        #cta h2 {
+            color: white;
+        }
+        
+        #cta p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-buttons .btn {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .cta-buttons .btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .sobre-content {
+                flex-direction: column;
+            }
+            
+            .sobre-img {
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .header-content {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="container navbar">
+            <a href="#" class="logo">Invex<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#sobre">Quem Somos</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#diferenciais">Diferenciais</a></li>
+                <li><a href="#cta">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Não basta aparecer. É preciso impactar.</h1>
+                <p>Na Invex, transformamos ideias em resultados e empresas em marcas desejadas.</p>
+                <a href="https://wa.me/554195658389?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20Invex!" class="btn">Quero crescer minha empresa!</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sobre -->
+    <section id="sobre">
+        <div class="container">
+            <h2 class="text-center">🚀 Quem Somos</h2>
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <p>A Invex nasceu com um propósito claro: acelerar o crescimento de negócios com inteligência estratégica e performance real.</p>
+                    <p>São mais de 4 anos gerando resultados, conectando tecnologia, criatividade e dados para transformar desafios em oportunidades lucrativas.</p>
+                    <p>Nosso time vive marketing de verdade — e entrega soluções sob medida para quem quer crescer de forma inteligente e consistente.</p>
+                </div>
+                <div class="sobre-img">
+                    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Equipe Invex">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos">
+        <div class="container">
+            <h2 class="text-center">💼 O Que Podemos Fazer por Você</h2>
+            <p class="text-center">Soluções completas para alavancar seu negócio</p>
+            
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Vídeos que Vendem</h3>
+                    <p>Reels, Shorts, vídeos de tráfego e conteúdo com foco em conversão.</p>
+                </div>
+                
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Design de Impacto</h3>
+                    <p>Identidade visual forte, posts de autoridade e apresentações memoráveis.</p>
+                </div>
+                
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Tráfego Pago Inteligente</h3>
+                    <p>Campanhas segmentadas com foco em resultado no Google, YouTube e Meta Ads.</p>
+                </div>
+                
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3>Copywriting que Converte</h3>
+                    <p>Textos persuasivos que geram cliques, leads e vendas.</p>
+                </div>
+                
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>Automação via WhatsApp</h3>
+                    <p>Funis automatizados com bots e mensagens personalizadas para escalar atendimentos.</p>
+                </div>
+                
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <h3>Consultoria Estratégica</h3>
+                    <p>Diagnóstico, posicionamento e plano de ação para começar ou acelerar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section id="diferenciais">
+        <div class="container">
+            <h2 class="text-center">💡 Como Trabalhamos</h2>
+            <p class="text-center">Aqui, nada é feito no achismo. Tudo é estratégia.</p>
+            
+            <div class="diferenciais-list">
+                <div class="diferencial-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Clareza e transparência</h3>
+                    <p>Em cada etapa do processo, mantemos você informado e seguro sobre cada decisão.</p>
+                </div>
+                
+                <div class="diferencial-item">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Agilidade</h3>
+                    <p>Resposta rápida às mudanças do mercado para manter sua vantagem competitiva.</p>
+                </div>
+                
+                <div class="diferencial-item">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Foco em ROI</h3>
+                    <p>Todas as ações são planejadas e medidas para garantir o melhor retorno sobre investimento.</p>
+                </div>
+                
+                <div class="diferencial-item">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Atendimento próximo</h3>
+                    <p>Relacionamento direto e personalizado, sem soluções prontas ou genéricas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta">
+        <div class="container">
+            <h2 class="text-center">Vamos fazer sua marca crescer?</h2>
+            <p class="text-center">Nosso compromisso é simples: Fazer sua empresa crescer com estratégia, dados e resultados concretos.</p>
+            
+            <div class="cta-buttons">
+                <a href="https://wa.me/554195658389?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20Invex!" class="btn">Falar por WhatsApp</a>
+                <a href="mailto:invexassessoria@gmail.com" class="btn btn-outline">Enviar E-mail</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Invex Assessoria</h3>
+                    <p>Estratégia, Marketing e Tecnologia para seu Negócio decolar.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <a href="mailto:invexassessoria@gmail.com"><i class="fas fa-envelope"></i> invexassessoria@gmail.com</a>
+                    <a href="tel:+554195658389"><i class="fas fa-phone"></i> (41) 9565-8389</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links</h3>
+                    <a href="#sobre">Quem Somos</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="#diferenciais">Diferenciais</a>
+                    <a href="#cta">Contato</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Invex Assessoria. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/554195658389?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20Invex!" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
